@@ -3,6 +3,7 @@ from django.db import models
 class Status(models.Model):
     status_id = models.PositiveSmallIntegerField()
     modified = models.DateTimeField(auto_now=True)
+    data = models.CharField(max_length=600, null=True)
 
 class History(models.Model):
     action=models.CharField(max_length=100)

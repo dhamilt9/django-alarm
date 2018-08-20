@@ -4,7 +4,7 @@ import Video from './Video';
 
 const VideoList = (props) => {
 	const videoNodes = props.data.map(video => (
-		<Video timestamp={video.timestamp} key={video._id} id={video._id} vidsource={video.vidsource} reason={video.reason} vidname={video.vidname}>
+		<Video time={video.time} key={video.id} id={video.id} src={video.src} reason={video.reason} name={video.name}>
 		</Video>
 	));
 	return(
@@ -16,11 +16,11 @@ const VideoList = (props) => {
 
 VideoList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
-    timestamp: PropTypes.string,
-    id: PropTypes.string,
-    vidsource: PropTypes.string,
+    time: PropTypes.string,
+    id: PropTypes.number,
+    src: PropTypes.string,
     reason: PropTypes.string,
-    vidname: PropTypes.string,
+    name: PropTypes.string,
   })),
 };
 

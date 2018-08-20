@@ -8,9 +8,6 @@ const MainPage = ({ data }) =>
 		<p>Nothing to show</p>
 	) : (
 		<div className="container">
-			<div className="form">
-				<AlarmForm />
-			</div>
 			<div className="videos">
 				<h2>Videos:</h2>
 				<VideoList data={ data } />
