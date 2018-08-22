@@ -9,6 +9,7 @@ python_version = "3.5"
 [packages]
 django = "*"
 djangorestframework = "*"
-"psycopg2" = "*"
+channels = "*"
+channels-redis = "*"
 
 [dev-packages]

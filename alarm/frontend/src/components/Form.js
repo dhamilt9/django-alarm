@@ -18,9 +18,9 @@ class Form extends Component {
     const conf = {
       method: "post",
       body: JSON.stringify(video),
-      headers: new Headers({ "Content-Type": "application/json" })
+      headers: new Headers({ "Content-Type": "application/json", 'Accept': 'application/json'})
     };
-    fetch(this.props.endpoint, conf).then(response => console.log(response));
+    fetch(this.props.endpoint, conf).then(response => response.json()).then(response => console.log(response));
   };
   render() {
     const { name, reason } = this.state;

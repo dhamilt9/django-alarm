@@ -9,7 +9,7 @@ const MainPage = ({ data }) =>
 	) : (
 		<div className="container">
 			<div className="videos">
-				<h2>Videos:</h2>
+				<h2>Videos!</h2>
 				<VideoList data={ data } />
 			</div>
 		</div>
