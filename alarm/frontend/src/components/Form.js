@@ -14,13 +14,25 @@ class Form extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { name, reason } = this.state;
-    const video = { name, reason };
+    const alarmcall = { name, reason };
     const conf = {
       method: "post",
-      body: JSON.stringify(video),
+      body: JSON.stringify(alarmcall),
       headers: new Headers({ "Content-Type": "application/json", 'Accept': 'application/json'})
     };
-    fetch(this.props.endpoint, conf).then(response => response.json()).then(response => console.log(response));
+    fetch(
+		this.props.endpoint, 
+		conf
+	).then(
+		response => response.json()
+	).then(
+		response => {
+			var payload=JSON.parse(response);
+			if (payload.success==true){
+				this.props.onSuccess(payload.alarm.modified_at, payload.alarm.name, payload.alarm.status);
+			}
+		}
+	);
   };
   render() {
     const { name, reason } = this.state;

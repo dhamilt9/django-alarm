@@ -2,8 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('status/<int:pk>', views.StatusRetrieveUpdate.as_view() ),
-    path('history', views.HistoryListCreate.as_view() ),
-    path('statuslookup', views.StatusLookupRetrieve.as_view() ),
+    path('alarm/<int:pk>', views.AlarmRetrieveUpdate.as_view() ),
+    path('requesthistory', views.RequestsListCreate.as_view() ),
 	path('ringalarm', views.RingAlarmView.as_view() ),
+	path('piupdate', views.PiUpdateView.as_view() ),
 ]

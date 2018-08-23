@@ -1,15 +1,20 @@
 from django.db import models
 
-class Status(models.Model):
-    status_id = models.PositiveSmallIntegerField()
-    modified = models.DateTimeField(auto_now=True)
-    data = models.CharField(max_length=600, null=True)
+class Alarm(models.Model):
+	CHOICES = (
+		('OFF', 'Offline'),
+		('CON', 'Connecting'),
+		('ON', 'Online'),
+		('RING', 'Ringing'),
+		('PRO', 'Processing'),
+		('UP', 'Uploading'),
+	)
+	name = models.CharField(max_length=256)
+	status = models.CharField(max_length=100, choices=CHOICES)
+	modified_at = models.DateTimeField(auto_now=True)
 
-class History(models.Model):
-    action=models.CharField(max_length=100)
-    time=models.DateTimeField(auto_now_add=True)
-    source=models.CharField(max_length=100)
-
-class StatusLookup(models.Model):
-	status_id = models.PositiveSmallIntegerField()
-	status_desc = models.CharField(max_length=100)
+class AlarmRequests(models.Model):
+	action=models.CharField(max_length=100)
+	created_at=models.DateTimeField(auto_now_add=True)
+	name=models.CharField(max_length=256)
+	reason=models.CharField(max_length=1000)

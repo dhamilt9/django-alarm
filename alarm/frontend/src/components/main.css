@@ -1,0 +1,44 @@
+.container{
+	margin:auto;
+	width:50%;
+	text-align:center;
+}
+
+#statusBox{
+	display: block;
+	background-color:#2ffc28;
+	padding-top:20px;
+	padding-bottom:20px;
+	border-radius: 25px;
+	font-size:20px;
+}
+#statusBox.ON{
+	background-color:#2ffc28;
+}
+#statusBox.ON:after{
+	content:"Online";
+}
+#statusBox.CON{
+	background-color:#30dbd2;
+}
+#statusBox.CON:after{
+	content:"Connecting";
+}
+#statusBox.RIN{
+	background-color:#30dbd2;
+}
+#statusBox.RIN:after{
+	content:"Ringing";
+}
+#statusBox.PRO{
+	background-color:#30dbd2;
+}
+#statusBox.PRO:after{
+	content:"Processing Video";
+}
+#statusBox.UP{
+	background-color:#30dbd2;
+}
+#statusBox.UP:after{
+	content:"Uploading Video";
+}

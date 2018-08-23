@@ -1,16 +1,11 @@
 from rest_framework import serializers
-from alarmstatus.models import Status, History, StatusLookup
-class StatusSerializer(serializers.ModelSerializer):
+from alarmstatus.models import Alarm, AlarmRequests
+class AlarmSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Status
+        model = Alarm
         fields = '__all__'
 		
-class HistorySerializer(serializers.ModelSerializer):
+class RequestSerializer(serializers.ModelSerializer):
     class Meta:
-        model = History
-        fields = '__all__'
-		
-class StatusLookupSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = StatusLookup
+        model = AlarmRequests
         fields = '__all__'
