@@ -41,7 +41,7 @@ copy the following to .../django-alarm/alarm/alarm/settings_secret.py, replaced 
 SEC_KEY = 'secret_key'
 PSQL_USER = 'user'
 PSQL_PASS = 'password'
-HOSTS = ''
+HOSTS = ['host1', 'host2']
 ```
 
 ## RUN DEV SERVER
