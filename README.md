@@ -7,9 +7,13 @@ dev server currently located at 54.173.137.49
 ## REQUIREMENTS
 
 Python 3.5.2
+
 Pipenv
+
 Node.js/npm
+
 PostgreSQL
+
 ```
 sudo apt-get install libpq-dev postgresql postgresql-contrib
 sudo su - postgres
@@ -25,9 +29,13 @@ exit
 ```
 
 ## SETUP
+
 pipenv install
+
 npm install
+
 copy the following to .../django-alarm/alarm/alarm/settings_secret.py, replaced with your values:
+
 ```
 SEC_KEY = 'secret_key'
 PSQL_USER = 'user'
@@ -36,8 +44,11 @@ HOSTS = ''
 ```
 
 ## RUN DEV SERVER
+
 pipenv shell
+
 python alarm/alarm/manage.py migrate
+
 npm start
 
 	
