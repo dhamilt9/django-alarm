@@ -11,14 +11,13 @@ class MainPage extends Component{
 		super(props);
 		this.state={
 			onSuccess: false,
-			updateVideo: false,
-			data:{
+			alarmdata:{
 				id:"",
 				modified_at:"",
 				name: "",
 				status: "",
 			},
-			videoNodes: null
+			videoNodes: []
 		};
 		this.onSuccess=this.onSuccess.bind(this)
 		this.fetchAlarmStatus=this.fetchAlarmStatus.bind(this)
@@ -39,9 +38,8 @@ class MainPage extends Component{
 			})
 		.then(
 			data => {
-				this.setState({ videonodesdata: data })
 				this.setState({
-					videoNodes: this.state.videonodesdata.map(video => (
+					videoNodes: data.map(video => (
 						<Video time={video.time} key={video.id} id={video.id} src={video.src} reason={video.reason} name={video.name}></Video>
 					)).reverse()
 				})
@@ -58,15 +56,17 @@ class MainPage extends Component{
 			}
 			return response.json();
 		})
-		.then(data=>this.setState({
-			data
-		}));
+		.then(data=> {
+			this.setState({
+				alarmdata: data
+			})
+		});
 	}
 	
 	onSuccess(modified_at, name, status){
 		this.setState({
 			onSuccess: true,
-			data:{
+			alarmdata:{
 				modified_at:modified_at,
 				name:name,
 				status:status
@@ -76,7 +76,7 @@ class MainPage extends Component{
 		{
 			console.log("Hello!");
 			const waiting = ["CON", "PRO", "UP", "RIN"]
-			if (waiting.includes(this.state.data.status)){
+			if (waiting.includes(this.state.alarmdata.status)){
 				this.fetchAlarmStatus()
 			}else{
 				this.fetchVideos()
@@ -89,7 +89,7 @@ class MainPage extends Component{
 		return(
 			<div className="container">
 				<AlarmStatusDisplay
-					status={this.state.data}
+					status={this.state.alarmdata}
 				/>
 				<Form
 					onSuccess={this.onSuccess}
