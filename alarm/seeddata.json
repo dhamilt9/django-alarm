@@ -1,0 +1,1 @@
+[{"model": "alarmstatus.alarm", "pk": 1, "fields": {"name": "Main", "status": "ON", "modified_at": "2018-08-28T19:41:48.959Z"}}, {"model": "videos.video", "pk": 1, "fields": {"name": "Example video", "reason": "Testing website", "time": "2018-08-28T19:31:44.982Z", "src": "https://s3.amazonaws.com/hamiltonalarmvideos/wakeup20180525095308.mp4"}}]

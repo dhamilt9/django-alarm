@@ -13,5 +13,6 @@ channels = "*"
 channels-redis = "*"
 "psycopg2-binary" = "*"
 asgiref = "*"
+gunicorn = "*"
 
 [dev-packages]

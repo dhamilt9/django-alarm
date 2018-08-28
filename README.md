@@ -48,5 +48,6 @@ HOSTS = ''
 ```
 pipenv shell
 python alarm/alarm/manage.py migrate
+python manage.py loaddata seeddata.json
 npm start
 ```
