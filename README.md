@@ -30,9 +30,10 @@ exit
 
 ## SETUP
 
+```
 pipenv install
-
 npm install
+```
 
 copy the following to .../django-alarm/alarm/alarm/settings_secret.py, replaced with your values:
 
@@ -44,13 +45,8 @@ HOSTS = ''
 ```
 
 ## RUN DEV SERVER
-
+```
 pipenv shell
-
 python alarm/alarm/manage.py migrate
-
 npm start
-
-	
-	
-	
+```
