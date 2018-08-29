@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = SEC_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = HOSTS
 
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'alarmstatus',
     'videos',
 	'rest_framework',
-	'frontend'
+	'frontend',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +128,8 @@ DATETIME_FORMAT='%d-%m-%Y %H:%M:S'
 
 REST_FRAMEWORK = {
 	'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': [],
 }
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
