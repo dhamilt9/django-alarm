@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'alarmstatus',
     'videos',
 	'rest_framework',
+    'rest_framework.authtoken',
 	'frontend',
 ]
 
@@ -128,8 +129,12 @@ DATETIME_FORMAT='%d-%m-%Y %H:%M:S'
 
 REST_FRAMEWORK = {
 	'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
-    'DEFAULT_AUTHENTICATION_CLASSES': [],
-    'DEFAULT_PERMISSION_CLASSES': [],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+	'DEFAULT_PERMISSION_CLASSES': (
+		'rest_framework.permissions.IsAuthenticated',
+	)
 }
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

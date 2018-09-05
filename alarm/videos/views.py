@@ -2,10 +2,15 @@ from videos.models import Video
 from videos.serializers import VideoSerializer
 from rest_framework import generics
 from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+import json
 
 from videos.VideoCreator import VideoCreator
 
-class VideoListCreate(generics.ListCreateAPIView):
+class VideoList(generics.ListAPIView):
+    authentication_classes = ()
+    permission_classes = ()
     queryset = Video.objects.all()
     serializer_class = VideoSerializer
 	
@@ -14,7 +19,7 @@ class VideoCreator(APIView):
 		name=request.data.get("name")
 		reason=request.data.get("reason")
 		src=request.data.get("src")
-		newVid=VideoCreator()
-		result=newVid.save(name=name, reason=reason, src=src)
-		response = Response(json.dumps(result), status=status.HTTP_200_OK)
+		newVid=Video(name=name, reason=reason, src=src)
+		newVid.save()
+		response = Response(status=status.HTTP_200_OK)
 		return response

@@ -1,38 +1,60 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import CSRFToken from './csrftoken';
+
 class Form extends Component {
   static propTypes = {
     endpoint: PropTypes.string.isRequired
   };
   state = {
     name: "",
-    reason: ""
+    reason: "",
   };
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
   handleSubmit = e => {
     e.preventDefault();
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = $.trim(cookies[i]);
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
+    console.log(csrftoken);
     const { name, reason } = this.state;
     const alarmcall = { name, reason };
     const conf = {
       method: "post",
       body: JSON.stringify(alarmcall),
-      headers: new Headers({ "Content-Type": "application/json", 'Accept': 'application/json'})
+      headers: {
+        "X-CSRFToken": csrftoken,
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
     };
     fetch(
-		this.props.endpoint, 
-		conf
-	).then(
-		response => response.json()
-	).then(
-		response => {
-			var payload=JSON.parse(response);
-			if (payload.success==true){
-				this.props.onSuccess(payload.alarm.modified_at, payload.alarm.name, payload.alarm.status);
-			}
-		}
-	);
+      this.props.endpoint, 
+      conf
+    ).then(
+      response => response.text()
+    ).then(
+      response => {
+        var payload=JSON.parse(response);
+        if (payload.success==true){
+          this.props.onSuccess(payload.alarm.modified_at, payload.alarm.name, payload.alarm.status);
+        }
+      }
+    );
   };
   render() {
     const { name, reason } = this.state;
