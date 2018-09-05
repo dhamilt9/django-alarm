@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Video
-admin.site.register(Video)
+from .models import Alarm
+admin.site.register(Alarm)
 # Register your models here.
