@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import CSRFToken from './csrftoken';
 
 class Form extends Component {
   static propTypes = {
