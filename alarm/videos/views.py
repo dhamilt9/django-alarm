@@ -6,8 +6,6 @@ from rest_framework.response import Response
 from rest_framework import status
 import json
 
-from videos.VideoCreator import VideoCreator
-
 class VideoList(generics.ListAPIView):
     authentication_classes = ()
     permission_classes = ()
