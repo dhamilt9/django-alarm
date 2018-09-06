@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import CSRFToken from './csrftoken';
 
 class Form extends Component {
   static propTypes = {
@@ -7,12 +8,12 @@ class Form extends Component {
   };
   state = {
     name: "",
-    reason: "",
+    reason: ""
   };
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     function getCookie(name) {
       var cookieValue = null;
@@ -29,9 +30,11 @@ class Form extends Component {
       return cookieValue;
     }
     var csrftoken = getCookie('csrftoken');
-    console.log(csrftoken);
     const { name, reason } = this.state;
-    const alarmcall = { name, reason };
+    const csrfmiddlewaretoken = csrftoken
+    const alarmcall = { name, reason, csrfmiddlewaretoken };
+    console.log(alarmcall);
+    console.log(JSON.stringify(alarmcall));
     const conf = {
       method: "post",
       body: JSON.stringify(alarmcall),
@@ -60,6 +63,7 @@ class Form extends Component {
     return (
       <div className="column">
         <form onSubmit={this.handleSubmit}>
+          <CSRFToken />
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
