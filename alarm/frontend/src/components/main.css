@@ -1,13 +1,19 @@
 .container{
 	margin:auto;
-	width:50%;
+	max-width:500px;
 	text-align:center;
+    padding-right:30px;
+    padding-left:30px;
 }
 .ringAlarmForm{
     text-align:left;
 }
 .captcha{
     margin:auto;
+}
+
+h4{
+    font-size:3vmin;
 }
 
 .noselect {
@@ -25,7 +31,7 @@
     display: inline-block;
     padding:10px;
     border-radius:4px;
-	font-size:20px;
+	font-size:3.5vmin;
 }
 #statusBox.ON{
 	background-color:#2ffc28;
