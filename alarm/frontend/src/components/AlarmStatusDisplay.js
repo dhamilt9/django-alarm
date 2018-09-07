@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class AlarmStatusDisplay extends Component {
   render() {
-    return (<div id="statusBox" className={this.props.status.status}>Alarm: </div>);
+    return (<div id="statusBox" className={this.props.status.status + " noselect"}>Alarm: </div>);
   }
 }
 

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
 import MainPage from './MainPage';
-import AlarmStatusDisplay from './AlarmStatusDisplay';
-import Form from './Form';
 
 class App extends Component {
 	render(){

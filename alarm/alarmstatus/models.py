@@ -5,7 +5,7 @@ class Alarm(models.Model):
 		('OFF', 'Offline'),
 		('CON', 'Connecting'),
 		('ON', 'Online'),
-		('RING', 'Ringing'),
+		('RIN', 'Ringing'),
 		('PRO', 'Processing'),
 		('UP', 'Uploading'),
 	)
