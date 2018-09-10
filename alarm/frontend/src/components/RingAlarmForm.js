@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import CSRFToken from './csrftoken';
 import ReCAPTCHA from "react-google-recaptcha";
 import { Button, Input, Label, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 
@@ -23,29 +22,12 @@ class RingAlarmForm extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    function getCookie(name) {
-      var cookieValue = null;
-      if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-          var cookie = $.trim(cookies[i]);
-          if (cookie.substring(0, name.length + 1) === (name + '=')) {
-            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-            break;
-          }
-        }
-      }
-      return cookieValue;
-    }
-    var csrftoken = getCookie('csrftoken');
     const { name, reason, recaptchaValue } = this.state;
-    const csrfmiddlewaretoken = csrftoken
-    const alarmcall = { name, reason, csrfmiddlewaretoken, recaptchaValue };
+    const alarmcall = { name, reason, recaptchaValue };
     const conf = {
       method: "post",
       body: JSON.stringify(alarmcall),
       headers: {
-        "X-CSRFToken": csrftoken,
         "Accept": "application/json",
         "Content-Type": "application/json"
       },
@@ -76,7 +58,6 @@ class RingAlarmForm extends Component {
     const { name, reason } = this.state;
     return (
       <form className="ringAlarmForm" onSubmit={this.handleSubmit}>
-          <CSRFToken />
           <ControlLabel className="formLabel">Name</ControlLabel>
           <FormControl
             style={{ marginBottom: 10 }}
@@ -98,10 +79,9 @@ class RingAlarmForm extends Component {
             required
           />
           <ReCAPTCHA
-            size="compact"
-            style={{ marginBottom: 10 }}
+            size="invisible"
             id="captcha"
-            sitekey="6Leq4m4UAAAAABQcZpwJ-By6fBpvvXvIPTbBhI_W"
+            sitekey="6Lf9hW8UAAAAAD6f0ob_mZD3QsW0_K--Gf5h6Xey"
             ref={this._reCaptchaRef}
             onChange={this.reCaptchaChange}
           />
