@@ -79,7 +79,8 @@ class RingAlarmForm extends Component {
             required
           />
           <ReCAPTCHA
-            size="invisible"
+            size="compact"
+            style={{ marginBottom: 10 }}
             id="captcha"
             sitekey="6Lf9hW8UAAAAAD6f0ob_mZD3QsW0_K--Gf5h6Xey"
             ref={this._reCaptchaRef}
