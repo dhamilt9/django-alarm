@@ -13,7 +13,7 @@ from django.views import View
 from alarmstatus.RingAlarm import RingAlarm
 from alarmstatus.PiHandler import PiHandler
 from django.views.decorators.csrf import csrf_exempt
-import os
+from .captcha_secret import *
 
 class AlarmRetrieve(generics.RetrieveAPIView):
     authentication_classes = ()
