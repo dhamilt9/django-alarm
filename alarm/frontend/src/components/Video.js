@@ -8,7 +8,8 @@ const Video = props => (
 			<h4>Time: {props.time}</h4>
 		</div>
 		<video src={props.src} className="wakeupVideo" controls="controls" width="100%" height="auto"></video>
-	</div>
+    <div className="or-spacer"><div className="mask"></div></div>  
+	</div>   
 )
 
 export default Video;

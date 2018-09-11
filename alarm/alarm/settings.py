@@ -115,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
  
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
@@ -123,12 +123,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-DATETIME_FORMAT='%d-%m-%Y %H:%M:S' 
+DATETIME_FORMAT='%A	%B %d %I:%M:%S%p' 
 
 
 
 REST_FRAMEWORK = {
-	'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
+	'DATETIME_FORMAT': '%A	%B %d %I:%M:%S%p',
+    'TIME_ZONE': 'America/New_York',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
