@@ -14,6 +14,8 @@ Node.js/npm
 
 PostgreSQL
 
+Google Recaptcha (www.google.com/recaptcha)
+
 ```
 sudo apt-get install libpq-dev postgresql postgresql-contrib
 sudo su - postgres
@@ -35,13 +37,14 @@ pipenv install
 npm install
 ```
 
-copy the following to .../django-alarm/alarm/alarm/settings_secret.py, replaced with your values:
+set the following to environment variables, replaced with your values:
 
 ```
 SEC_KEY = 'secret_key'
 PSQL_USER = 'user'
 PSQL_PASS = 'password'
-HOSTS = ['host1', 'host2']
+HOSTS = "host1,host2,..."
+RECAPTCHA = 'google_recaptcha_secret'
 ```
 
 ## RUN DEV SERVER
