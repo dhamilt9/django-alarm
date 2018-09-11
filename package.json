@@ -8,6 +8,7 @@
     "dev": "watch 'webpack --mode development ./alarm/frontend/src/index.js --output ./alarm/frontend/static/frontend/main.js' ./alarm/frontend/src",
     "build": "webpack --mode development ./alarm/frontend/src/index.js --output ./alarm/frontend/static/frontend/main.js",
     "oldbuild": "webpack --mode production ./alarm/frontend/src/index.js --output ./alarm/frontend/static/frontend/main.js",
+    "prod": "webpack --mode production ./alarm/frontend/src/index.js --output ./alarm/frontend/static/frontend/main.js && python ./alarm/manage.py collectstatic && sudo systemctl restart gunicorn ",
     "start": "webpack --mode development ./alarm/frontend/src/index.js --output ./alarm/frontend/static/frontend/main.js && python ./alarm/manage.py runserver"
   },
   "keywords": [],

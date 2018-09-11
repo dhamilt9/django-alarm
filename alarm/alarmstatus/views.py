@@ -14,6 +14,7 @@ from alarmstatus.RingAlarm import RingAlarm
 from alarmstatus.PiHandler import PiHandler
 from django.views.decorators.csrf import csrf_exempt
 from .captcha_secret import *
+import os
 
 class AlarmRetrieve(generics.RetrieveAPIView):
     authentication_classes = ()
@@ -41,7 +42,7 @@ class RingAlarmView(View):
         
         url = 'https://www.google.com/recaptcha/api/siteverify'
         values = {
-            'secret': CAPTCHA_SECRET,
+            'secret': os.environ['CAPTCHA_SECRET'],
             'response': recaptcha_response
         }
         data = urllib.parse.urlencode(values).encode()
