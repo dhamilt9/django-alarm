@@ -12,6 +12,8 @@ import urllib
 from django.views import View
 from alarmstatus.RingAlarm import RingAlarm
 from alarmstatus.PiHandler import PiHandler
+from django.views.decorators.csrf import csrf_exempt
+from .captcha_secret import *
 
 class AlarmRetrieve(generics.RetrieveAPIView):
     authentication_classes = ()
@@ -26,6 +28,7 @@ class RequestsListCreate(generics.ListCreateAPIView):
 class RingAlarmView(View):
     @method_decorator(authentication_classes([]))
     @method_decorator(permission_classes([]))
+    @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
         
@@ -38,7 +41,7 @@ class RingAlarmView(View):
         
         url = 'https://www.google.com/recaptcha/api/siteverify'
         values = {
-            'secret': '6Leq4m4UAAAAABAKZA5qaf2Tf4n3lCTnGjLV4u1f',
+            'secret': CAPTCHA_SECRET,
             'response': recaptcha_response
         }
         data = urllib.parse.urlencode(values).encode()
