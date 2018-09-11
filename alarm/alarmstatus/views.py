@@ -41,7 +41,7 @@ class RingAlarmView(View):
         
         url = 'https://www.google.com/recaptcha/api/siteverify'
         values = {
-            'secret': os.environ.get('RECAPTCHA'),
+            'secret': CAPTCHA_SECRET,
             'response': recaptcha_response
         }
         data = urllib.parse.urlencode(values).encode()
