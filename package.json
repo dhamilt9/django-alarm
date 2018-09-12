@@ -33,6 +33,7 @@
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "npm-watch": "^0.3.0",
+    "rc-progress": "^2.2.5",
     "react-bootstrap": "^0.32.4",
     "react-google-recaptcha": "^1.0.2",
     "style-loader": "^0.22.1"

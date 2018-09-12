@@ -6,7 +6,7 @@ import RingAlarmForm from './RingAlarmForm';
 import Video from './Video';
 import AlarmStatusDisplay from './AlarmStatusDisplay';
 import css from './main.css';
-import { Alert, Grid, Row, Col } from 'react-bootstrap';
+import { Alert, Grid, Row, Col, ProgressBar } from 'react-bootstrap';
 
 class MainPage extends Component{
 	constructor(props){
@@ -15,16 +15,19 @@ class MainPage extends Component{
 			onSuccess: false,
       videoRefresh: false,
       error: "",
+      button:true,
 			alarmdata:{
 				id:"",
 				modified_at:"",
 				name: "",
 				status: "",
 			},
-			videoNodes: []
+      percent:0
 		};
+			videoNodes: []
 		this.onSuccess=this.onSuccess.bind(this)
 		this.onFailure=this.onFailure.bind(this)
+		this.onClick=this.onClick.bind(this)
 		this.clearError=this.clearError.bind(this)
 		this.videoPoll=this.videoPoll.bind(this)
 		this.fetchAlarmStatus=this.fetchAlarmStatus.bind(this)
@@ -55,6 +58,7 @@ class MainPage extends Component{
 			}
 		);
 	}
+  
 	fetchAlarmStatus(){
     const previousStatus=this.state.alarmdata.status
 		fetch(`alarmstatus/alarm/1`)
@@ -70,7 +74,33 @@ class MainPage extends Component{
 			})
       if (previousStatus=="UP" && data.status=="ON"){
         this.fetchVideos();
+        this.setState({
+          percent:100
+        })
+      }else if(data.status=="ON"){
+        this.setState({
+          percent:0
+        })
       }
+      const percentMap={CON: 0, RIN: 5, PRO: 45, UP: 78}
+      if (["CON", "RIN", "PRO", "UP"].indexOf(data.status) > -1){
+        this.setState({
+          button:false,
+        })
+        if (previousStatus!=data.status){
+          console.log("Changed state");
+          this.setState({
+            percent:percentMap[data.status],
+          })
+        }else{
+          this.setState({percent:this.state.percent+3})
+        }
+      }else{
+        this.setState({
+          button:true
+        })
+      }
+      
 		});
 	}
 	
@@ -98,6 +128,11 @@ class MainPage extends Component{
 			error: error,
 		});
 	}
+	onClick(){
+		this.setState({
+			button: false,
+		});
+	}
   
   clearError(){
     this.setState({error: ""})
@@ -116,9 +151,14 @@ class MainPage extends Component{
           />
         </Row>
         <Row>
+          <ProgressBar now={this.state.percent}/>
+        </Row>
+        <Row>
           <RingAlarmForm
             onSuccess={this.onSuccess}
             onFailure={this.onFailure}
+            button={this.state.button}
+            onClick={this.onClick}
             endpoint='alarmstatus/ringalarm'
           />
         </Row>

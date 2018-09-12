@@ -36,6 +36,7 @@ h4{
     padding:10px;
     border-radius:4px;
 	font-size:3.5vmin;
+    margin-bottom:10px;
 }
 #statusBox.ON{
 	background-color:#2ffc28;

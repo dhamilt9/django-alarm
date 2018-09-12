@@ -12,7 +12,7 @@ class RingAlarmForm extends Component {
   state = {
     name: "",
     reason: "",
-    recaptchaValue: ""
+    recaptchaValue: "",
   };
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -22,6 +22,7 @@ class RingAlarmForm extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
+    this.props.onClick();
     const { name, reason, recaptchaValue } = this.state;
     const alarmcall = { name, reason, recaptchaValue };
     const conf = {
@@ -86,12 +87,7 @@ class RingAlarmForm extends Component {
             ref={this._reCaptchaRef}
             onChange={this.reCaptchaChange}
           />
-          <Button 
-            style={{ marginBottom: 10 }}
-            type="submit"
-          >
-            Wake Dan Up!
-          </Button>
+          <Button style={{ marginBottom: 10 }} type="submit" disabled={!this.props.button}>Wake Dan Up!</Button>
       </form>
     );
   }
