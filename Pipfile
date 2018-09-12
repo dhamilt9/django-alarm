@@ -9,10 +9,9 @@ python_version = "3.5"
 [packages]
 django = "*"
 djangorestframework = "*"
-channels = "*"
-channels-redis = "*"
 "psycopg2-binary" = "*"
 asgiref = "*"
 gunicorn = "*"
+twitterapi = "*"
 
 [dev-packages]
