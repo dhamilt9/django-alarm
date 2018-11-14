@@ -1,3 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Montserrat:500,800');
+
+#statusBox{
+	font-family: 'Montserrat', sans-serif;
+}
+
+.alarmButton{
+    background-color:#C2353E;
+    font-family: 'Baloo Bhaijaan', sans-serif;
+    border-radius:0px;
+    color:white;
+    font-size:20px;
+}
+.alarmButton:hover{
+    background-color:#4C4E4D;
+    font-family: 'Baloo Bhaijaan', sans-serif;
+    border-radius:0px;
+    color:white;
+    font-size:20px;
+}
+.alarmButton:active{
+    background-color:#C2353E;
+    font-family: 'Baloo Bhaijaan', sans-serif;
+    border-radius:0px;
+    color:white;
+    font-size:20px;
+}
+#topRight{
+    top: 20px;
+    right: 20px;
+    position:fixed;
+    font-size:40px;
+    color:#C2353E;
+    opacity:0.5;
+    cursor:pointer;
+}
+
+#topRight:hover {
+    opacity:1;
+}
+
+.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover{
+    background-color:#C2353E;
+    font-family: 'Baloo Bhaijaan', sans-serif;
+    border-radius:0px;
+    color:white;
+    font-size:20px;
+}
+
+.alarmimg{
+    width:100%;
+    position:relative;
+}
+.secondhand{
+    width:100%;
+    position:absolute;
+    right:0;
+    transform-origin: 50.3% 54%;
+    border-radius:50%;
+}
+#imageContainer{
+    width:100%;
+    position:relative;
+}
+#imageWrapper{
+    margin-bottom:-25px;
+}
+.customHeader{
+    font-family: 'Baloo Bhaijaan', sans-serif;
+}
+.customHeader1{
+    color:#C2353E;
+}
+.customHeader2{
+    color:#4C4E4D;
+}
+h4{
+    color:#4C4E4D;
+	font-family: 'Montserrat', sans-serif;
+}
+h4 span.alarmdata{
+	font-weight:800;
+}
+h4 span.alarmreason{
+	color:#C2353E;
+}
 .container{
 	margin:auto;
 	max-width:500px;
@@ -7,17 +93,31 @@
 }
 .ringAlarmForm{
     text-align:left;
-}
-.captcha{
-    margin:auto;
+    position:relative;
+    z-index:1;
 }
 
 h4{
-    font-size:2.5vmin;
+    font-size:3vmin;
 }
+#centerMe{
+    width:100%;
+    text-align:center;
+}
+#centerCaptcha{
+    width: 164px;
+    height: 144px;
+    margin:auto;
+}
+
 
 .showMore{
     margin-bottom:50px;
+}
+
+.singleVideoContent{
+    text-align:left;
+    padding-left:10px;
 }
 
 .noselect {
@@ -74,7 +174,6 @@ h4{
 	margin-top: 20px;
 	margin-left: auto;
 	margin-right:auto;
-	width: 400px;
 	position: relative;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -151,4 +250,8 @@ h4{
   height: 100%;
   border-radius: 12px / 125px;
   box-shadow: 0 0 8px black;
+}
+
+.modal-title{
+  font-family: 'Baloo Bhaijaan', sans-serif;
 }

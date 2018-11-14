@@ -6,7 +6,10 @@ import RingAlarmForm from './RingAlarmForm';
 import Video from './Video';
 import AlarmStatusDisplay from './AlarmStatusDisplay';
 import css from './main.css';
-import { Alert, Grid, Row, Col, ProgressBar } from 'react-bootstrap';
+import { Alert, Grid, Row, Col, ProgressBar, Modal } from 'react-bootstrap';
+import { Textfit } from 'react-textfit';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
 class MainPage extends Component{
 	constructor(props){
@@ -22,15 +25,18 @@ class MainPage extends Component{
 				name: "",
 				status: "",
 			},
-      percent:0
+      running:false,
+      videoNodes: [],
+      showFAQ: false,
 		};
-			videoNodes: []
 		this.onSuccess=this.onSuccess.bind(this)
 		this.onFailure=this.onFailure.bind(this)
 		this.onClick=this.onClick.bind(this)
 		this.clearError=this.clearError.bind(this)
 		this.videoPoll=this.videoPoll.bind(this)
 		this.fetchAlarmStatus=this.fetchAlarmStatus.bind(this)
+    this.showFAQ = this.showFAQ.bind(this);
+    this.hideFAQ = this.hideFAQ.bind(this);
 	}
 	
 	componentDidMount(){
@@ -52,7 +58,7 @@ class MainPage extends Component{
 			data => {
 				this.setState({
 					videoNodes: data.map(video => (
-						<Video time={video.time} key={video.id} id={video.id} src={video.src} reason={video.reason} name={video.name}></Video>
+						<Video time={video.time.split(/[ ,.]+/).slice(-1).join()} date={video.time.split(/[ ,.]+/).slice(0,2).join(" ")} key={video.id} id={video.id} src={video.src} reason={video.reason} name={video.name}></Video>
 					)).reverse()
 				})
 			}
@@ -75,11 +81,11 @@ class MainPage extends Component{
       if (previousStatus=="UP" && data.status=="ON"){
         this.fetchVideos();
         this.setState({
-          percent:100
+          running:false
         })
       }else if(data.status=="ON"){
         this.setState({
-          percent:0
+          running:false
         })
       }
       const percentMap={CON: 0, RIN: 5, PRO: 45, UP: 78}
@@ -90,10 +96,10 @@ class MainPage extends Component{
         if (previousStatus!=data.status){
           console.log("Changed state");
           this.setState({
-            percent:percentMap[data.status],
+            running:true,
           })
         }else{
-          this.setState({percent:this.state.percent+3})
+          this.setState({running:true})
         }
       }else{
         this.setState({
@@ -137,10 +143,49 @@ class MainPage extends Component{
   clearError(){
     this.setState({error: ""})
   }
+  
+  showFAQ(){
+    this.setState({showFAQ:true})
+  }
+  hideFAQ(){
+    this.setState({showFAQ:false})
+  }
 	
 	render(){
 		return(
-			<Grid style={{marginTop: 50}} className="show-grid mt-100">
+			<Grid style={{marginTop: 20}} className="show-grid mt-100">
+        <div id="topRight">
+          <FontAwesomeIcon onClick={this.showFAQ} icon={faQuestionCircle} />
+        </div>
+        <Modal show={this.state.showFAQ} onHide={this.hideFAQ}>
+          <Modal.Header closeButton>
+            <Modal.Title>F.A.Q.</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>What is this?</h4>
+            <p>I built an alarm clock, and gave you control.</p>
+            <h4>What happens if I click the button?</h4>
+            <p>The alarm clock next to my bed will go off.</p>
+            <h4>How will I know it worked?</h4>
+            <p>After the alarm goes off, a video of me waking up will be uploaded to this website.</p>
+            <h4>But why?</h4>
+            <p>I have trouble getting up on time, and I wanted my people to be able to make sure I'm up.</p>
+            <h4>What time would you like to be woken up?</h4>
+            <p>Around 8:30am on weekdays and 11:30am on weekends</p>
+            <h4>How do you know people won't abuse the system?</h4>
+            <p>I'm a very trusting individual.</p>
+            <h4>I'm a nerd, how does this work?</h4>
+            <p>The website is built with Django and React. The alarm clock is a raspberry pi.</p>
+            <h4>Who are you?</h4>
+            <p>I'm glad you asked! You can visit my website <a href="http://www.danhamiltononline.com">here</a>.</p>
+          </Modal.Body>
+        </Modal>
+        <Textfit className="customHeader customHeader1" mode="single">
+          Do Wake Danny
+        </Textfit>
+        <Textfit className="customHeader customHeader2" mode="single">
+          The World's First Crowd-Sourced, Trust-Based Alarm Clock
+        </Textfit>
         <AlertDisplay 
           error={this.state.error}
           clearError={this.clearError}
@@ -148,10 +193,8 @@ class MainPage extends Component{
         <Row>
           <AlarmStatusDisplay
             status={this.state.alarmdata}
+            running={this.state.running}
           />
-        </Row>
-        <Row>
-          <ProgressBar now={this.state.percent}/>
         </Row>
         <Row>
           <RingAlarmForm

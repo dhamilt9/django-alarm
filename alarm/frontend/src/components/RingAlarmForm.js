@@ -7,7 +7,7 @@ import { Button, Input, Label, FormControl, FormGroup, ControlLabel } from 'reac
 class RingAlarmForm extends Component {
   constructor(props) {
     super(props);
-    this._reCaptchaRef = React.createRef();
+    // this._reCaptchaRef = React.createRef();
   }
   state = {
     name: "",
@@ -18,7 +18,10 @@ class RingAlarmForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   reCaptchaChange = value => {
-    this.setState({ recaptchaValue: value });
+    // this.setState({ recaptchaValue: value });
+  }
+  componentDidMount(){
+    // this._reCaptchaRef.current.execute();
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -59,35 +62,30 @@ class RingAlarmForm extends Component {
     const { name, reason } = this.state;
     return (
       <form className="ringAlarmForm" onSubmit={this.handleSubmit}>
-          <ControlLabel className="formLabel">Name</ControlLabel>
           <FormControl
             style={{ marginBottom: 10 }}
             className="formInput"
             type="text"
             name="name"
+            placeholder="Name"
             onChange={this.handleChange}
             value={name}
             required
           />
-          <ControlLabel className="formLabel">Reason for wakeup</ControlLabel>
           <FormControl
             style={{ marginBottom: 10 }}
             className="formInput"
             type="text"
             name="reason"
+            placeholder="Reason for wakeup"
             onChange={this.handleChange}
             value={reason}
             required
           />
-          <ReCAPTCHA
-            size="compact"
-            style={{ marginBottom: 10 }}
-            id="captcha"
-            sitekey="6Lf9hW8UAAAAAD6f0ob_mZD3QsW0_K--Gf5h6Xey"
-            ref={this._reCaptchaRef}
-            onChange={this.reCaptchaChange}
-          />
-          <Button style={{ marginBottom: 10 }} type="submit" disabled={!this.props.button}>Wake Dan Up!</Button>
+          <div id="centerMe">
+            <Button style={{ marginBottom: 10 }} className="alarmButton" type="submit" disabled={!this.props.button}>Wake Dan Up!</Button>
+          </div>
+          <div className="or-spacer"><div className="mask"></div></div>  
       </form>
     );
   }
