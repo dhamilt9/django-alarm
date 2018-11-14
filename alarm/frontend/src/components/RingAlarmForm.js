@@ -7,7 +7,7 @@ import { Button, Input, Label, FormControl, FormGroup, ControlLabel } from 'reac
 class RingAlarmForm extends Component {
   constructor(props) {
     super(props);
-    // this._reCaptchaRef = React.createRef();
+    this._reCaptchaRef = React.createRef();
   }
   state = {
     name: "",
@@ -18,10 +18,10 @@ class RingAlarmForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   reCaptchaChange = value => {
-    // this.setState({ recaptchaValue: value });
+    this.setState({ recaptchaValue: value });
   }
   componentDidMount(){
-    // this._reCaptchaRef.current.execute();
+    this._reCaptchaRef.current.execute();
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -81,6 +81,13 @@ class RingAlarmForm extends Component {
             onChange={this.handleChange}
             value={reason}
             required
+          />
+          <ReCAPTCHA
+            size="invisible"
+            id="captcha"
+            sitekey="6Lf9hW8UAAAAAD6f0ob_mZD3QsW0_K--Gf5h6Xey"
+            ref={this._reCaptchaRef}
+            onChange={this.reCaptchaChange}
           />
           <div id="centerMe">
             <Button style={{ marginBottom: 10 }} className="alarmButton" type="submit" disabled={!this.props.button}>Wake Dan Up!</Button>
