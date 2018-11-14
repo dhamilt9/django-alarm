@@ -176,8 +176,8 @@ class MainPage extends Component{
             <p>I'm a very trusting individual.</p>
             <h4>I'm a nerd, how does this work?</h4>
             <p>The website is built with Django and React. The alarm clock is a raspberry pi.</p>
-            <h4>Who are you?</h4>
-            <p>I'm glad you asked! You can visit my website <a href="http://www.danhamiltononline.com">here</a>.</p>
+            <h4>Who made this?</h4>
+            <p>I'm glad you asked! My name is Dan Hamilton, and you can visit my website <a href="http://www.danhamiltononline.com">here</a>. The lovely graphic design was done by my good friend <a href="https://www.instagram.com/eli__sundae">Eli Dreyfus</a>.</p>
           </Modal.Body>
         </Modal>
         <Textfit className="customHeader customHeader1" mode="single">
