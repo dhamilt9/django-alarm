@@ -84,7 +84,7 @@ class MainPage extends Component{
         this.setState({
           running:false
         })
-        setInterval(function(){ var elem=document.getElementById("videoList"); elem.scrollIntoView();}, 500);
+        setTimeout(function(){ var elem=document.getElementById("videoList"); elem.scrollIntoView();}, 500);
       }else if(data.status=="ON"){
         this.setState({
           running:false
