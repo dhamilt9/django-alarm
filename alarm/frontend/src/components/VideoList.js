@@ -19,7 +19,7 @@ class VideoList extends Component {
 	
 	render() {
 		return (
-			<div>
+			<div id="videoList">
 				<ShowMore className="showMore" items={this.props.nodes} by={5}>
 					{({ current, onMore }) => (
 					<div>

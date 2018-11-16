@@ -11,6 +11,7 @@ import { Textfit } from 'react-textfit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
+
 class MainPage extends Component{
 	constructor(props){
 		super(props);
@@ -83,6 +84,8 @@ class MainPage extends Component{
         this.setState({
           running:false
         })
+        var elem=document.getElementById("videoList")
+        elem.scrollIntoView();
       }else if(data.status=="ON"){
         this.setState({
           running:false
@@ -94,7 +97,6 @@ class MainPage extends Component{
           button:false,
         })
         if (previousStatus!=data.status){
-          console.log("Changed state");
           this.setState({
             running:true,
           })
@@ -177,15 +179,17 @@ class MainPage extends Component{
             <h4>I'm a nerd, how does this work?</h4>
             <p>The website is built with Django and React. The alarm clock is a raspberry pi.</p>
             <h4>Who made this?</h4>
-            <p>I'm glad you asked! My name is Dan Hamilton, and you can visit my website <a href="http://www.danhamiltononline.com">here</a>. The lovely graphic design was done by my good friend <a href="https://www.instagram.com/eli__sundae">Eli Dreyfus</a>.</p>
+            <p>I'm glad you asked! My name is Dan Hamilton, and you can visit my website <a href="http://www.danhamiltononline.com">here</a>. The lovely graphic design was done by my good friend <a href="https://www.instagram.com/eli__sundae">Eli Sundae</a>.</p>
           </Modal.Body>
         </Modal>
-        <Textfit className="customHeader customHeader1" mode="single">
-          Do Wake Danny
-        </Textfit>
-        <Textfit className="customHeader customHeader2" mode="single">
-          The World's First Crowd-Sourced, Trust-Based Alarm Clock
-        </Textfit>
+        <div id="textfitContainer">
+          <Textfit className="customHeader customHeader1" mode="single">
+            Do Wake Danny
+          </Textfit>
+          <Textfit className="customHeader customHeader2" mode="single">
+            The World's First Crowd-Sourced, Trust-Based Alarm Clock
+          </Textfit>
+        </div>
         <AlertDisplay 
           error={this.state.error}
           clearError={this.clearError}

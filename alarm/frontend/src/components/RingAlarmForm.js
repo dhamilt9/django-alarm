@@ -83,16 +83,15 @@ class RingAlarmForm extends Component {
             required
           />
           <ReCAPTCHA
-            size="invisible"
-            id="captcha"
-            sitekey="6Lf9hW8UAAAAAD6f0ob_mZD3QsW0_K--Gf5h6Xey"
-            ref={this._reCaptchaRef}
-            onChange={this.reCaptchaChange}
+              size="invisible"
+              id="captcha"
+              sitekey="6Lf9hW8UAAAAAD6f0ob_mZD3QsW0_K--Gf5h6Xey"
+              ref={this._reCaptchaRef}
+              onChange={this.reCaptchaChange}
           />
           <div id="centerMe">
             <Button style={{ marginBottom: 10 }} className="alarmButton" type="submit" disabled={!this.props.button}>Wake Dan Up!</Button>
           </div>
-          <div className="or-spacer"><div className="mask"></div></div>  
       </form>
     );
   }
